@@ -1,0 +1,192 @@
+/* Mobile Devices (320px - 767px) */
+@media (max-width: 767px) {
+    .hamburger {
+        display: block;
+    }
+
+    .nav-menu {
+        display: none;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        flex-direction: column;
+        gap: 0;
+        background: var(--dark-bg);
+        padding: 1rem 0;
+    }
+
+    .nav-menu.active {
+        display: flex;
+    }
+
+    .nav-menu li {
+        width: 100%;
+        text-align: center;
+        padding: 0.5rem 0;
+    }
+
+    .hero-content h1 {
+        font-size: 1.8rem;
+    }
+
+    .hero-content p {
+        font-size: 1rem;
+    }
+
+    .features h2,
+    .how-it-works h2,
+    .cta h2 {
+        font-size: 1.5rem;
+    }
+
+    .features-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .steps {
+        grid-template-columns: 1fr;
+    }
+
+    .container {
+        padding: 1rem;
+    }
+
+    /* Panel Styles */
+    .panel {
+        margin-bottom: 2rem;
+    }
+
+    .dual-panel {
+        grid-template-columns: 1fr;
+    }
+
+    /* Settings */
+    .settings-sidebar {
+        display: none;
+    }
+
+    .settings-tabs-mobile {
+        display: flex;
+        gap: 0.5rem;
+        margin-bottom: 1rem;
+        overflow-x: auto;
+    }
+
+    .settings-tabs-mobile button {
+        padding: 0.5rem 1rem;
+        white-space: nowrap;
+        flex-shrink: 0;
+    }
+}
+
+/* Tablets (768px - 1023px) */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .features-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .steps {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .hero-content h1 {
+        font-size: 2rem;
+    }
+
+    .dual-panel {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+/* Desktop (1024px+) */
+@media (min-width: 1024px) {
+    .features-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .steps {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .dual-panel {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .settings-container {
+        display: grid;
+        grid-template-columns: 250px 1fr;
+        gap: 2rem;
+    }
+}
+
+/* Large Screens (1920px+) */
+@media (min-width: 1920px) {
+    .container,
+    .navbar-container,
+    .features,
+    .how-it-works {
+        max-width: 1400px;
+    }
+}
+
+/* Font Size Adjustment */
+body.font-small {
+    font-size: 12px;
+}
+
+body.font-medium {
+    font-size: 16px;
+}
+
+body.font-large {
+    font-size: 24px;
+}
+
+body.font-xlarge {
+    font-size: 32px;
+}
+
+body.font-xxlarge {
+    font-size: 40px;
+}
+
+/* Touch Devices */
+@media (hover: none) and (pointer: coarse) {
+    button,
+    .btn {
+        min-height: 44px;
+        min-width: 44px;
+    }
+
+    a {
+        min-height: 44px;
+        display: inline-block;
+    }
+}
+
+/* Print Styles */
+@media print {
+    .navbar,
+    .footer,
+    .btn {
+        display: none;
+    }
+
+    body {
+        background-color: white;
+        color: black;
+    }
+}
+
+/* Landscape Orientation */
+@media (orientation: landscape) and (max-height: 500px) {
+    .hero {
+        padding: 2rem;
+        min-height: auto;
+    }
+
+    .nav-menu {
+        gap: 1rem;
+    }
+}

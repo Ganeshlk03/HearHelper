@@ -1,0 +1,8 @@
+flask
+flask-socketio
+tensorflow
+opencv-python
+numpy
+mediapipe
+scikit-learn
+matplotlib

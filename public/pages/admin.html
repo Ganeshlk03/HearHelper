@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - HearHelper</title>
+    <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <link rel="stylesheet" href="../css/admin.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo" onclick="window.location.href='../home.html'" style="cursor: pointer;">
+                <span class="logo-icon">🎧</span>
+                <h1>HearHelper Admin</h1>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="../home.html" class="nav-link">Home</a></li>
+                <li><a href="admin.html" class="nav-link active">Admin Panel</a></li>
+                <li><a href="#" class="nav-link" onclick="logoutAdmin()">Logout</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        <div class="container">
+            <!-- Page Header -->
+            <div class="page-header">
+                <h1>🔐 Admin Dashboard</h1>
+                <p>Manage users, feedback, and system analytics</p>
+            </div>
+
+            <!-- Alert Messages -->
+            <div id="alertContainer"></div>
+
+            <!-- Sidebar -->
+            <div class="admin-wrapper">
+                <aside class="admin-sidebar">
+                    <h3>Menu</h3>
+                    <ul class="admin-menu">
+                        <li><a href="#dashboard" class="menu-item active" onclick="showDashboard()">📊 Dashboard</a>
+                        </li>
+                        <li><a href="#users" class="menu-item" onclick="showUsers()">👥 Users</a></li>
+                        <li><a href="#feedback" class="menu-item" onclick="showFeedback()">💬 Feedback & Support</a>
+                        </li>
+                        <li><a href="#analytics" class="menu-item" onclick="showAnalytics()">📈 Analytics</a></li>
+                        <li><a href="#settings" class="menu-item" onclick="showSettings()">⚙️ Settings</a></li>
+                    </ul>
+                </aside>
+
+                <!-- Main Content Area -->
+                <div class="admin-main">
+                    <!-- Dashboard Section -->
+                    <section id="dashboard-section" class="admin-section active">
+                        <h2>Dashboard Overview</h2>
+
+                        <div class="stats-grid">
+                            <div class="stat-card">
+                                <h3>Total Users</h3>
+                                <p class="stat-number" id="totalUsers">0</p>
+                                <span class="stat-label">Registered users</span>
+                            </div>
+                            <div class="stat-card">
+                                <h3>Active Users</h3>
+                                <p class="stat-number" id="activeUsers">0</p>
+                                <span class="stat-label">Currently active</span>
+                            </div>
+                            <div class="stat-card">
+                                <h3>Total Feedback</h3>
+                                <p class="stat-number" id="totalFeedback">0</p>
+                                <span class="stat-label">Messages received</span>
+                            </div>
+                            <div class="stat-card">
+                                <h3>Open Tickets</h3>
+                                <p class="stat-number" id="openTickets">0</p>
+                                <span class="stat-label">Awaiting response</span>
+                            </div>
+                        </div>
+
+                        <div class="recent-activity">
+                            <h3>Recent User Activity</h3>
+                            <table class="activity-table">
+                                <thead>
+                                    <tr>
+                                        <th>User</th>
+                                        <th>Action</th>
+                                        <th>Time</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="activityTableBody">
+                                    <!-- Dynamic content will be inserted here -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
+                    <!-- Users Section -->
+                    <section id="users-section" class="admin-section">
+                        <h2>User Management</h2>
+                        <div class="users-controls">
+                            <input type="text" id="userSearch" placeholder="Search users..." oninput="filterUsers()">
+                            <button class="btn" onclick="showAddUserForm()">+ Add User</button>
+                        </div>
+                        <table class="users-table">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Role</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="usersTableBody">
+                                <!-- Dynamic content will be inserted here -->
+                            </tbody>
+                        </table>
+                    </section>
+                    <!-- Feedback Section -->
+                    <section id="feedback-section" class="admin-section">
+                        <h2>Feedback & Support</h2>
+                        <div class="feedback-controls">
+                            <input type="text" id="feedbackSearch" placeholder="Search feedback..."
+                                oninput="filterFeedback()">
+                        </div>
+                        <table class="feedback-table">
+                            <thead>
+                                <tr>
+                                    <th>User</th>
+                                    <th>Message</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="feedbackTableBody">
+                                <!-- Dynamic content will be inserted here -->
+                            </tbody>
+                        </table>
+                    </section>
+                    <!-- Analytics Section -->
+                    <section id="analytics-section" class="admin-section">
+                        <h2>System Analytics</h2>
+                        <div class="analytics-grid">
+                            <div class="analytics-card">
+                                <h3>User Growth</h3>
+                                <canvas id="userGrowthChart"></canvas>
+                            </div>
+                            <div class="analytics-card">
+                                <h3>Feedback Trends</h3>
+                                <canvas id="feedbackTrendsChart"></canvas>
+                            </div>
+                        </div>
+                    </section>
+                    <!-- Settings Section -->
+                    <section id="settings-section" class="admin-section">
+                        <h2>System Settings</h2>
+                        <form id="settingsForm">
+                            <div class="form-group">
+                                <label for="siteTitle">Site Title</label>
+                                <input type="text" id="siteTitle" name="siteTitle" value="HearHelper">
+                            </div>
+                            <div class="form-group">
+                                <label for="adminEmail">Admin Email</label>
+                                <input type="email" id="adminEmail" name="adminEmail" value="admin@hearhelper.com">
+                            </div>
+                        </form>
+                    </section>
+                </div>
+            </div>
+        </div>
+        </div>
+
+        <script src="../js/navigation.js"></script>
+    <script type="module" src="../js/admin.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - HearHelper</title>
+    <link rel="stylesheet" href="../css/register.css">
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <div class="navbar-logo">🎤 HearHelper</div>
+            <div class="hamburger" id="hamburger">☰</div>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="login.html" class="nav-link">Login Panel</a></li>
+                <li><a href="register.html" class="nav-link active">Register</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="login-container">
+        <div class="login-card registration-card">
+            <!-- Header -->
+            <div class="login-header">
+                <h1 style="font-size: 2.5rem; color: #2c3e50; margin-bottom: 25px;">Create Your Account</h1>
+            </div>
+
+            <!-- Alert Messages -->
+            <div id="alertContainer"></div>
+
+            <!-- Registration Form -->
+            <form id="registrationForm" class="login-form">
+                <!-- Full Name -->
+                <div class="form-group">
+                    <label for="fullName">Full Name</label>
+                    <input type="text" id="fullName" name="name" placeholder="Enter your full name" required>
+                </div>
+
+                <!-- Email -->
+                <div class="form-group">
+                    <label for="regEmail">Email Address</label>
+                    <input type="email" id="regEmail" name="email" placeholder="Enter your email" required>
+                </div>
+
+                <!-- Phone -->
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" required>
+                </div>
+
+                <!-- Hearing Type -->
+                <div class="form-group">
+                    <label for="hearingType">Hearing Impairment Type</label>
+                    <select id="hearingType" name="hearingType" required>
+                        <option value="">Select your type</option>
+                        <option value="Deaf">Deaf (Complete hearing loss)</option>
+                        <option value="Hard of Hearing">Hard of Hearing (Partial loss)</option>
+                        <option value="Deaf-Blind">Deaf-Blind</option>
+                        <option value="Other">Other</option>
+                        <option value="Prefer not to say">Prefer not to say</option>
+                    </select>
+                </div>
+
+                <!-- Password -->
+                <div class="form-group">
+                    <label for="regPassword">Password</label>
+                    <div class="password-group">
+                        <input type="password" id="regPassword" name="password"
+                            placeholder="Create a strong password (min 8 characters)" required>
+                        <button type="button" class="toggle-password" onclick="toggleRegPassword()">
+                            👁️
+                        </button>
+                    </div>
+                    <div class="password-strength" id="passwordStrength"></div>
+                </div>
+
+                <!-- Confirm Password -->
+                <div class="form-group">
+                    <label for="confirmPassword">Confirm Password</label>
+                    <div class="password-group">
+                        <input type="password" id="confirmPassword" name="confirmPassword"
+                            placeholder="Confirm your password" required>
+                        <button type="button" class="toggle-password" onclick="toggleConfirmPassword()">
+                            👁️
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Terms -->
+                <div class="form-group checkbox">
+                    <label>
+                        <input type="checkbox" id="agreeTerms" required>
+                        <span>I agree to the Terms & Conditions and Privacy Policy</span>
+                    </label>
+                </div>
+
+                <!-- Register Button -->
+                <button type="submit" class="btn-login">Create Account</button>
+            </form>
+
+            <!-- Sign In Link -->
+            <div class="login-footer">
+                <p>Already have an account?
+                    <a href="login.html" class="register-link">Sign in here</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="../js/register.js"></script>
+</body>
+
+</html>

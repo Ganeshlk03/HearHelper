@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Benefits - HearHelper</title>
+    <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <link rel="stylesheet" href="../css/animation.css">
+    <link rel="stylesheet" href="../css/benefits.css">
+    <script src="../js/benefits.js" defer></script> <!-- for filtering benefits and showing alerts -->
+</head>
+
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo" onclick="navigateTo('../index.html')" style="cursor: pointer;">
+                <span class="logo-icon">🎧</span>
+                <h1>HearHelper</h1>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="../home.html" class="nav-link">Home</a></li>
+                <li><a href="./transcription.html" class="nav-link">Transcription</a></li>
+                <li><a href="./community.html" class="nav-link">Community</a></li>
+                <li><a href="./sign_language.html" class="nav-link">Sign Language</a></li>
+                <li><a href="./benefits.html" class="nav-link active">Benefits</a></li>
+                <li><a href="./settings.html" class="nav-link">Settings</a></li>
+                <li><a href="./login.html" class="nav-link" onclick="logoutUser()">Logout</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        <div class="container">
+            <!-- Page Header -->
+            <div class="page-header benefits-header">
+                <h1>💰 Government Benefits for Hearing-Impaired</h1>
+                <p>Explore all available benefits and schemes from Central and State Governments</p>
+            </div>
+
+            <!-- Alert Messages -->
+            <div id="alertContainer"></div>
+
+            <!-- Filter Section -->
+            <section class="filter-section">
+                <h2 class="section-title">Filter Benefits</h2>
+                <div class="filter-buttons">
+                    <button class="filter-btn active" onclick="filterBenefits('all')">All Benefits</button>
+                    <button class="filter-btn" onclick="filterBenefits('central')">Central Government</button>
+                    <button class="filter-btn" onclick="filterBenefits('state')">State Government</button>
+                    <button class="filter-btn" onclick="filterBenefits('student')">Students</button>
+                    <button class="filter-btn" onclick="filterBenefits('employee')">Employees</button>
+                    <button class="filter-btn" onclick="filterBenefits('homemaker')">Homemakers</button>
+                </div>
+            </section>
+
+            <!-- Central Government Benefits Section -->
+            <section class="benefits-section" id="central-section">
+                <h2 class="section-title">
+                    <span class="india-flag">🇮🇳</span> Central Government Benefits
+                </h2>
+
+                <!-- Disability Pension -->
+                <div class="benefit-card" data-category="central">
+                    <div class="benefit-header">
+                        <h3 class="benefit-title">Disability Pension & Benefits</h3>
+                        <span class="benefit-badge central-badge">Central</span>
+                    </div>
+                    <div class="benefit-content">
+                        <p class="benefit-description">
+                            Monthly pension provided by the Central Government for persons with disabilities under the
+                            Social Security Scheme.
+                        </p>
+                        <div class="benefit-details">
+                            <div class="detail-item">
+                                <h4>Eligibility:</h4>
+                                <ul>
+                                    <li>Age: 18 years and above</li>
+                                    <li>Disability: 40% or more</li>
+                                    <li>Below Poverty Line (BPL) status</li>
+                                    <li>Not receiving any other pension</li>
+                                </ul>
+                            </div>
+                            <div class="detail-item">
+                                <h4>Amount:</h4>
+                                <p class="amount">₹1,500 - ₹2,500 per month (varies by state)</p>
+                            </div>
+                            <div class="detail-item">
+                                <h4>Required Documents:</h4>
+                                <ul>
+                                    <li>Aadhaar Card / Voter ID</li>
+                                    <li>Disability Certificate (40% or more)</li>
+                                    <li>Income Certificate</li>
+                                    <li>Bank Account Details</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="benefit-links">
+                            <a href="https://www.myscheme.gov.in/schemes/igndps" target="_blank"
+                                class="btn btn-primary">
+                                Apply Online
+                            </a>
+                            <a href="https://www.myscheme.gov.in/schemes/igndps" target="_blank"
+                                class="btn btn-secondary">
+                                Learn More
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Railway Concession -->
+                <div class="benefit-card" data-category="central">
+                    <div class="benefit-header">
+                        <h3 class="benefit-title">Railway Concession (50% Discount)</h3>
+                        <span class="benefit-badge central-badge">Central</span>
+                    </div>
+                    <div class="benefit-content">
+                        <p class="benefit-description">
+                            Get 50% discount on railway tickets for persons with disabilities across India.
+                        </p>
+                        <div class="benefit-details">
+                            <div class="detail-item">
+                                <h4>Eligibility:</h4>
+                                <ul>
+                                    <li>Disability: 40% or more</li>
+                                    <li>Valid Disability Certificate</li>
+                                    <li>One attendant also gets 50% discount if accompanying</li>
+                                </ul>
+                            </div>
+                            <div class="detail-item">
+                                <h4>Coverage:</h4>
+                                <p><strong>All classes:</strong> AC, Sleeper, Second Class on all trains</p>
+                            </div>
+                            <div class="detail-item">
+                                <h4>How to Avail:</h4>
+                                <ul>
+                                    <li>Submit Disability Certificate at ticket counter</li>
+                                    <li>Book online on IRCTC with disability certificate</li>
+                                    <li>Show certificate at the time of journey</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="benefit-links">
+                            <a href="https://www.irctc.co.in/" target="_blank" class="btn btn-primary">
+                                Book Tickets Online
+                            </a>
+                            <a href="https://indianrailways.gov.in/" target="_blank" class="btn btn-secondary">
+                                Know More
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Income Tax Exemption -->
+                <div class="benefit-card" data-category="central">
+                    <div class="benefit-header">
+                        <h3 class="benefit-title">Income Tax Exemption</h3>
+                        <span class="benefit-badge central-badge">Central</span>
+                    </div>
+                    <div class="benefit-content">
+                        <p class="benefit-description">
+                            Special tax deductions and exemptions for persons with hearing impairment.
+                        </p>
+                        <div class="benefit-details">
+                            <div class="detail-item">
+                                <h4>Tax Benefits:</h4>
+                                <ul>
+                                    <li>Standard deduction: ₹75,000 (increased from ₹50,000)</li>
+                                    <li>Higher deduction limit under Section 80U</li>
+                                    <li>Deduction for medical treatment expenses</li>
+                                    <li>Exemption on disability pension</li>
+                                </ul>
+                            </div>
+                            <div class="detail-item">
+                                <h4>Documents Required:</h4>
+                                <ul>
+                                    <li>PAN Card</li>
+                                    <li>Aadhaar Card</li>
+                                    <li>Disability Certificate</li>
+                                    <li>Income proof</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="benefit-links">
+                            <a href="https://www.incometaxindia.gov.in/" target="_blank" class="btn btn-primary">
+                                File Tax Return
+                            </a>
+                            <a href="https://www.incometaxindia.gov.in/" target="_blank" class="btn btn-secondary">
+                                Get Tax Information
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- National Scholarship -->
+                <div class="benefit-card" data-category="central student">
+                    <div class="benefit-header">
+                        <h3 class="benefit-title">National Scholarship for Students with Disabilities</h3>
+                        <span class="benefit-badge central-badge">Central</span>
+                        <span class="benefit-badge student-badge">Student</span>
+                    </div>
+                    <div class="benefit-content">
+                        <p class="benefit-description">
+                            Scholarship for students with disabilities studying at school, college, and university
+                            level.
+                        </p>
+                        <div class="benefit-details">
+                            <div class="detail-item">
+                                <h4>Eligibility:</h4>
+                                <ul>
+                                    <li>Disability: 40% or more</li>
+                                    <li>Annual family income: Below ₹2.5 lakhs</li>
+                                    <li>Merit in studies</li>
+                                    <li>Indian citizen</li>
+                                </ul>
+                            </div>
+                            <div class="detail-item">
+                                <h4>Amount:</h4>
+                                <ul>
+                                    <li>School: ₹500-₹2,000 per month</li>
+                                    <li>College: ₹2,000-₹5,000 per month</li>
+                                    <li>University: ₹5,000-₹10,000 per month</li>
+                                </ul>
+                            </div>
+                            <div class="detail-item">
+                                <h4>Application Timeline:</h4>
+                                <p><strong>Usually:</strong> June-July every year</p>
+                            </div>
+                        </div>
+                        <div class="benefit-links">
+                            <a href="https://scholarships.gov.in/" target="_blank" class="btn btn-primary">
+                                Apply for Scholarship
+                            </a>
+                            <a href="https://www.education.gov.in/" target="_blank" class="btn btn-secondary">
+                                Learn More
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Employment in Government Jobs -->
+                <div class="benefit-card" data-category="central employee">
+                    <div class="benefit-header">
+                        <h3 class="benefit-title">Employment in Government Jobs (Reservation)</h3>
+                        <span class="benefit-badge central-badge">Central</span>
+                        <span class="benefit-badge employee-badge">Employee</span>
+                    </div>
+                    <div class="benefit-content">
+                        <p class="benefit-description">
+                            4% reservation in government jobs for persons with disabilities including hearing impaired.
+                        </p>
+                        <div class="benefit-details">
+                            <div class="detail-item">
+                                <h4>Job Categories:</h4>
+                                <ul>
+                                    <li>Central Government Jobs (UPSC, SSC, RRB)</li>
+                                    <li>Group A, B, and C positions</li>
+                                    <li>Posts suitable for hearing-impaired candidates</li>
+                                </ul>
+                            </div>
+                            <div class="detail-item">
+                                <h4>Special Concessions:</h4>
+                                <ul>
+                                    <li>Scribe facility in exams</li>
+                                    <li>Extra time during exam (up to 1 hour)</li>
+                                    <li>Sign language interpreter if needed</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="benefit-links">
+                            <a href="https://www.upsc.gov.in/" target="_blank" class="btn btn-primary">
+                                UPSC Jobs
+                            </a>
+                            <a href="https://ssc.gov.in/" target="_blank" class="btn btn-primary">
+                                SSC Jobs
+                            </a>
+                            <a href="https://indianrailways.gov.in/railwayboard/view_section.jsp?lang=0&id=0,7,1281"
+                                target="_blank" class="btn btn-secondary">
+                                Railway Jobs
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Housing Assistance -->
+                <div class="benefit-card" data-category="central homemaker">
+                    <div class="benefit-header">
+                        <h3 class="benefit-title">Housing Assistance & Grants</h3>
+                        <span class="benefit-badge central-badge">Central</span>
+                        <span class="benefit-badge homemaker-badge">Homemaker</span>
+                    </div>
+                    <div class="benefit-content">
+                        <p class="benefit-description">
+                            Financial assistance for construction and improvement of houses for persons with
+                            disabilities.
+                        </p>
+                        <div class="benefit-details">
+                            <div class="detail-item">
+                                <h4>Assistance Amount:</h4>
+                                <ul>
+                                    <li>Construction: Up to ₹5,00,000</li>
+                                    <li>Repair and improvement: Up to ₹1,50,000</li>
+                                    <li>Accessibility modifications: Up to ₹2,00,000</li>
+                                </ul>
+                            </div>
+                            <div class="detail-item">
+                                <h4>Eligibility:</h4>
+                                <ul>
+                                    <li>Disability: 40% or more</li>
+                                    <li>Own land or house</li>
+                                    <li>Annual income below ₹3 lakhs</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="benefit-links">
+                            <a href="https://pmay-urban.gov.in/" target="_blank" class="btn btn-primary">
+                                Apply for Housing
+                            </a>
+                            <a href="https://pmay-urban.gov.in/" target="_blank" class="btn btn-secondary">
+                                Know More
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- State Government Benefits Section -->
+            <section class="benefits-section" id="state-section">
+                <h2 class="section-title">
+                    <span class="state-icon">🏛️</span> State Government Benefits
+                </h2>
+
+                <!-- Karnataka State Benefits -->
+                <div class="benefit-card" data-category="state">
+                    <div class="benefit-header">
+                        <h3 class="benefit-title">Karnataka - Disability Allowance</h3>
+                        <span class="benefit-badge state-badge">Karnataka</span>
+                    </div>
+                    <div class="benefit-content">
+                        <p class="benefit-description">
+                            Monthly allowance provided by Karnataka State Government for persons with disabilities.
+                        </p>
+                        <div class="benefit-details">
+                            <div class="detail-item">
+                                <h4>Monthly Amount:</h4>
+                                <p class="amount">₹1,500 - ₹2,500</p>
+                            </div>
+                            <div class="detail-item">
+                                <h4>Eligibility:</h4>
+                                <ul>
+                                    <li>Karnataka resident</li>
+                                    <li>Disability: 50% or more</li>
+                                    <li>Age: 18-60 years</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="benefit-links">
+                            <a href="https://dwdsc.karnataka.gov.in/en" target="_blank" class="btn btn-primary">
+                                Apply Now
+                            </a>
+                            <a href="https://dwdsc.karnataka.gov.in/en" target="_blank" class="btn btn-secondary">
+                                Learn More
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!-- State Scholarship -->
+                <div class="benefit-card" data-category="state student">
+                    <div class="benefit-header">
+                        <h3 class="benefit-title">State Scholarship for Students with Disabilities</h3>
+                        <span class="benefit-badge state-badge">Karnataka</span>
+                        <span class="benefit-badge student-badge">Student</span>
+                    </div>
+                    <div class="benefit-content">
+                        <p class="benefit-description">
+                            Scholarship for students with disabilities studying at school, college, and university
+                            level.
+                        </p>
+                        <div class="benefit-details">
+                            <div class="detail-item">
+                                <h4>Eligibility:</h4>
+                                <ul>
+                                    <li>Disability: 40% or more</li>
+                                    <li>Annual family income: Below ₹2.5 lakhs</li>
+                                    <li>Merit in studies</li>
+                                    <li>Indian citizen</li>
+                                </ul>
+                            </div>
+                            <div class="detail-item">
+                                <h4>Amount:</h4>
+                                <ul>
+                                    <li>School: ₹1000-₹7,000 per month</li>
+                                    <li>College: ₹5,000-₹10,000 per month</li>
+                                    <li>University: ₹7,000-₹13,500 per month</li>
+                                    <li>based on caste like (General, OBC, SC, ST)</li>
+                                </ul>
+                            </div>
+                            <div class="detail-item">
+                                <h4>Application Timeline:</h4>
+                                <p><strong>Usually:</strong> June-July every year</p>
+                            </div>
+                        </div>
+                        <div class="benefit-links">
+                            <a href="https://ssp.postmatric.karnataka.gov.in/" target="_blank" class="btn btn-primary">
+                                Apply for Scholarship
+                            </a>
+                            <a href="https://ssp.karnataka.gov.in/ssp_post_home/" target="_blank"
+                                class="btn btn-secondary">
+                                Learn More
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Maharashtra State Benefits -->
+                <div class="benefit-card" data-category="state">
+                    <div class="benefit-header">
+                        <h3 class="benefit-title">Maharashtra - Disability Pension Scheme</h3>
+                        <span class="benefit-badge state-badge">Maharashtra</span>
+                    </div>
+                    <div class="benefit-content">
+                        <p class="benefit-description">
+                            Monthly pension scheme for persons with disabilities in Maharashtra state.
+                        </p>
+                        <div class="benefit-details">
+                            <div class="detail-item">
+                                <h4>Monthly Amount:</h4>
+                                <p class="amount">₹1,000 - ₹2,000</p>
+                            </div>
+                            <div class="detail-item">
+                                <h4>Application:</h4>
+                                <p>Apply at Taluka Social Welfare Office with disability certificate</p>
+                            </div>
+                        </div>
+                        <div class="benefit-links">
+                            <a href="https://socialjustice.maharashtra.gov.in/" target="_blank" class="btn btn-primary">
+                                Apply Now
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tamil Nadu State Benefits -->
+                <div class="benefit-card" data-category="state">
+                    <div class="benefit-header">
+                        <h3 class="benefit-title">Tamil Nadu - Assistance to Deaf-Blind Persons</h3>
+                        <span class="benefit-badge state-badge">Tamil Nadu</span>
+                    </div>
+                    <div class="benefit-content">
+                        <p class="benefit-description">
+                            Special assistance scheme for persons with hearing and vision disabilities in Tamil Nadu.
+                        </p>
+                        <div class="benefit-details">
+                            <div class="detail-item">
+                                <h4>Monthly Assistance:</h4>
+                                <p class="amount">₹2,000 - ₹3,000</p>
+                            </div>
+                            <div class="detail-item">
+                                <h4>Benefits Include:</h4>
+                                <ul>
+                                    <li>Monthly financial assistance</li>
+                                    <li>Free vocational training</li>
+                                    <li>Employment support</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="benefit-links">
+                            <a href="https://www.tn.gov.in/" target="_blank" class="btn btn-primary">
+                                Apply Now
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Delhi State Benefits -->
+                <div class="benefit-card" data-category="state">
+                    <div class="benefit-header">
+                        <h3 class="benefit-title">Delhi - Disability Allowance</h3>
+                        <span class="benefit-badge state-badge">Delhi</span>
+                    </div>
+                    <div class="benefit-content">
+                        <p class="benefit-description">
+                            Monthly allowance for severely disabled persons in Delhi.
+                        </p>
+                        <div class="benefit-details">
+                            <div class="detail-item">
+                                <h4>Monthly Amount:</h4>
+                                <p class="amount">₹1,500 - ₹3,000</p>
+                            </div>
+                            <div class="detail-item">
+                                <h4>Additional Benefits:</h4>
+                                <ul>
+                                    <li>Medical aid grant</li>
+                                    <li>Wheelchair/mobility aids</li>
+                                    <li>Hearing aid subsidy</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="benefit-links">
+                            <a href="https://delsoc.nic.in/" target="_blank" class="btn btn-primary">
+                                Apply Now
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gujarat State Benefits -->
+                <div class="benefit-card" data-category="state">
+                    <div class="benefit-header">
+                        <h3 class="benefit-title">Gujarat - Disability Pension Scheme</h3>
+                        <span class="benefit-badge state-badge">Gujarat</span>
+                    </div>
+                    <div class="benefit-content">
+                        <p class="benefit-description">
+                            Comprehensive disability pension and healthcare scheme in Gujarat.
+                        </p>
+                        <div class="benefit-details">
+                            <div class="detail-item">
+                                <h4>Monthly Pension:</h4>
+                                <p class="amount">₹1,600 - ₹3,000</p>
+                            </div>
+                            <div class="detail-item">
+                                <h4>Coverage:</h4>
+                                <ul>
+                                    <li>Monthly pension</li>
+                                    <li>Free health checkups</li>
+                                    <li>Skill development training</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="benefit-links">
+                            <a href="https://gujhealth.gov.in/" target="_blank" class="btn btn-primary">
+                                Apply Now
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Vocational Training & Skill Development Section -->
+            <section class="benefits-section">
+                <h2 class="section-title">🎓 Vocational Training & Skill Development</h2>
+
+                <div class="benefit-card">
+                    <div class="benefit-header">
+                        <h3 class="benefit-title">ITI Training for Persons with Disabilities</h3>
+                        <span class="benefit-badge skill-badge">Skill Development</span>
+                    </div>
+                    <div class="benefit-content">
+                        <p class="benefit-description">
+                            Free or subsidized ITI courses for persons with hearing impairment across India.
+                        </p>
+                        <div class="benefit-details">
+                            <div class="detail-item">
+                                <h4>Courses Available:</h4>
+                                <ul>
+                                    <li>Electronics & Communication</li>
+                                    <li>Computer Applications</li>
+                                    <li>Graphic Designing</li>
+                                    <li>Office Management</li>
+                                    <li>And many more...</li>
+                                </ul>
+                            </div>
+                            <div class="detail-item">
+                                <h4>Benefits:</h4>
+                                <ul>
+                                    <li>Free training (often)</li>
+                                    <li>Stipend/Monthly allowance</li>
+                                    <li>Job placement assistance</li>
+                                    <li>Sign language interpreter support</li>
+                                </ul>
+                            </div>
+                            <div class="detail-item">
+                                <h4>Duration:</h4>
+                                <p>6 months to 2 years depending on course</p>
+                            </div>
+                        </div>
+                        <div class="benefit-links">
+                            <a href="https://www.niti.gov.in/" target="_blank" class="btn btn-primary">
+                                Find ITI Centers
+                            </a>
+                            <a href="https://www.dget.gov.in/" target="_blank" class="btn btn-secondary">
+                                Register Now
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-header">
+                        <h3 class="benefit-title">NSDC Skill Training Programs</h3>
+                        <span class="benefit-badge skill-badge">Skill Development</span>
+                    </div>
+                    <div class="benefit-content">
+                        <p class="benefit-description">
+                            National Skill Development Council programs for skill enhancement of persons with
+                            disabilities.
+                        </p>
+                        <div class="benefit-details">
+                            <div class="detail-item">
+                                <h4>Focus Areas:</h4>
+                                <ul>
+                                    <li>Information Technology</li>
+                                    <li>E-commerce & Digital Marketing</li>
+                                    <li>Business Process Outsourcing</li>
+                                    <li>Hospitality & Tourism</li>
+                                </ul>
+                            </div>
+                            <div class="detail-item">
+                                <h4>Support Provided:</h4>
+                                <ul>
+                                    <li>Stipend during training</li>
+                                    <li>Placement support</li>
+                                    <li>Internship opportunities</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="benefit-links">
+                            <a href="https://nsdcindia.org/" target="_blank" class="btn btn-primary">
+                                Explore Programs
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Self-Employment Support Section -->
+            <section class="benefits-section">
+                <h2 class="section-title">💼 Self-Employment & Entrepreneurship</h2>
+
+                <div class="benefit-card">
+                    <div class="benefit-header">
+                        <h3 class="benefit-title">Prime Minister's Employment Generation Programme (PMEGP)</h3>
+                        <span class="benefit-badge employment-badge">Self-Employment</span>
+                    </div>
+                    <div class="benefit-content">
+                        <p class="benefit-description">
+                            Loan scheme for persons with disabilities to start their own business or trade.
+                        </p>
+                        <div class="benefit-details">
+                            <div class="detail-item">
+                                <h4>Loan Amount:</h4>
+                                <ul>
+                                    <li>Manufacturing sector: Up to ₹25 lakhs</li>
+                                    <li>Service sector: Up to ₹10 lakhs</li>
+                                </ul>
+                            </div>
+                            <div class="detail-item">
+                                <h4>Subsidy for Disabled:</h4>
+                                <p class="amount">35-45% of project cost as subsidy</p>
+                            </div>
+                            <div class="detail-item">
+                                <h4>Interest Rate:</h4>
+                                <p>6-12% per annum (reduced for disabled persons)</p>
+                            </div>
+                        </div>
+                        <div class="benefit-links">
+                            <a href="https://www.kviconline.gov.in/" target="_blank" class="btn btn-primary">
+                                Apply for Loan
+                            </a>
+                            <a href="https://www.kviconline.gov.in/" target="_blank" class="btn btn-secondary">
+                                Learn More
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Medical & Healthcare Benefits Section -->
+            <section class="benefits-section">
+                <h2 class="section-title">🏥 Medical & Healthcare Benefits</h2>
+
+                <div class="benefit-card">
+                    <div class="benefit-header">
+                        <h3 class="benefit-title">Hearing Aid Subsidy & Support</h3>
+                        <span class="benefit-badge health-badge">Healthcare</span>
+                    </div>
+                    <div class="benefit-content">
+                        <p class="benefit-description">
+                            Financial assistance for purchasing hearing aids and other assistive devices.
+                        </p>
+                        <div class="benefit-details">
+                            <div class="detail-item">
+                                <h4>Subsidy Amount:</h4>
+                                <ul>
+                                    <li>Up to 50% of cost (varies by state)</li>
+                                    <li>Maximum: ₹10,000 to ₹50,000 depending on state</li>
+                                </ul>
+                            </div>
+                            <div class="detail-item">
+                                <h4>Included Devices:</h4>
+                                <ul>
+                                    <li>Hearing aids (advanced models)</li>
+                                    <li>Cochlear implants (under special schemes)</li>
+                                    <li>Speech therapy services</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="benefit-links">
+                            <a href="https://alimco.in/content/870_1_HearingAids" target="_blank"
+                                class="btn btn-primary">
+                                Apply Through ALIMCO
+                            </a>
+                            <a href="https://www.ayush.gov.in/" target="_blank" class="btn btn-secondary">
+                                Health Ministry Link
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-header">
+                        <h3 class="benefit-title">AYUSHMAN BHARAT - PM-JAY (Health Insurance)</h3>
+                        <span class="benefit-badge health-badge">Healthcare</span>
+                    </div>
+                    <div class="benefit-content">
+                        <p class="benefit-description">
+                            Free health insurance scheme covering treatment costs including hearing-related treatments.
+                        </p>
+                        <div class="benefit-details">
+                            <div class="detail-item">
+                                <h4>Coverage:</h4>
+                                <ul>
+                                    <li>Free hospitalization up to ₹5 lakhs per year</li>
+                                    <li>Covers pre and post-hospitalization</li>
+                                    <li>Includes ENT treatments</li>
+                                </ul>
+                            </div>
+                            <div class="detail-item">
+                                <h4>Eligibility:</h4>
+                                <ul>
+                                    <li>Target beneficiary families (SECC data)</li>
+                                    <li>All persons with disabilities can access</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="benefit-links">
+                            <a href="https://pmjay.gov.in/" target="_blank" class="btn btn-primary">
+                                Check Eligibility & Apply
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Important Information Section -->
+            <section class="info-section">
+                <h2 class="section-title">📋 Important Information</h2>
+
+                <div class="info-cards">
+                    <div class="info-card">
+                        <h3>How to Apply?</h3>
+                        <ol class="info-list">
+                            <li>Get Disability Certificate (40% or more) from authorized medical board</li>
+                            <li>Collect required documents (Aadhaar, income certificate, etc.)</li>
+                            <li>Visit relevant government office or apply online</li>
+                            <li>Submit application with complete documents</li>
+                            <li>Track application status online</li>
+                        </ol>
+                    </div>
+
+                    <div class="info-card">
+                        <h3>Required Documents</h3>
+                        <ul class="info-list">
+                            <li>✓ Aadhaar Card / Voter ID</li>
+                            <li>✓ Disability Certificate (40% or more)</li>
+                            <li>✓ Income Certificate</li>
+                            <li>✓ Bank Account Details (for DBT)</li>
+                            <li>✓ Proof of Residence</li>
+                            <li>✓ Educational Certificates (if applicable)</li>
+                            <li>✓ Employment details (if applying for employee benefits)</li>
+                        </ul>
+                    </div>
+
+                    <div class="info-card">
+                        <h3>Disability Certificate</h3>
+                        <ul class="info-list">
+                            <li>📍 Get from government hospital / medical board</li>
+                            <li>📞 Contact: District Hospital / Medical Department</li>
+                            <li>⏱️ Time: Usually takes 2-4 weeks</li>
+                            <li>💰 Cost: Usually free in government hospitals</li>
+                            <li>📋 Valid for: 5 years (renewable)</li>
+                        </ul>
+                    </div>
+
+                    <div class="info-card">
+                        <h3>Helpful Resources</h3>
+                        <ul class="info-list">
+                            <li>🌐 <a href="https://disabilityaffairs.gov.in/" target="_blank">Ministry of Social
+                                    Justice & Empowerment</a></li>
+                            <li>🌐 <a href="https://www.pmay-urban.gov.in/" target="_blank">PM-JAY Official Portal</a>
+                            </li>
+                            <li>🌐 <a href="https://www.sbjp.in/" target="_blank">Stand-Up India Portal</a></li>
+                            <li>🌐 <a href="https://www.nsdc.org.in/" target="_blank">National Skill Development
+                                    Council</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- FAQ Section -->
+            <section class="faq-section">
+                <h2 class="section-title">❓ Frequently Asked Questions</h2>
+
+                <div class="faq-items">
+                    <div class="faq-item">
+                        <h3 class="faq-question">What percentage of disability is required for benefits?</h3>
+                        <p class="faq-answer">Most central government benefits require 40% or more disability. However,
+                            some state benefits may require 50% or more. Check specific scheme requirements.</p>
+                    </div>
+
+                    <div class="faq-item">
+                        <h3 class="faq-question">How long is the Disability Certificate valid?</h3>
+                        <p class="faq-answer">Disability Certificate is valid for 5 years. After that, it needs to be
+                            renewed by getting a fresh assessment from the medical board.</p>
+                    </div>
+
+                    <div class="faq-item">
+                        <h3 class="faq-question">Can I receive multiple benefits at the same time?</h3>
+                        <p class="faq-answer">Yes, you can avail multiple benefits simultaneously. For example, you can
+                            get pension, income tax exemption, and scholarship together, but some schemes may have
+                            income restrictions.</p>
+                    </div>
+
+                    <div class="faq-item">
+                        <h3 class="faq-question">How is the disability pension transferred?</h3>
+                        <p class="faq-answer">Disability pension is transferred directly to your bank account via Direct
+                            Benefit Transfer (DBT). This ensures transparency and timely transfer.</p>
+                    </div>
+
+                    <div class="faq-item">
+                        <h3 class="faq-question">What if my application is rejected?</h3>
+                        <p class="faq-answer">You can appeal the decision within 30 days. Resubmit with correct
+                            documents or request reconsideration at the concerned department.</p>
+                    </div>
+
+                    <div class="faq-item">
+                        <h3 class="faq-question">Are these benefits available for all states?</h3>
+                        <p class="faq-answer">Central government benefits are available across India. State benefits
+                            vary by state. Contact your state's Social Welfare Department for state-specific schemes.
+                        </p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>About HearHelper</h4>
+                <p>Making communication accessible for everyone</p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="transcription.html">Transcription</a></li>
+                    <li><a href="benefits.html">Benefits</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Support</h4>
+                <ul>
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#">Documentation</a></li>
+                    <li><a href="#">FAQ</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Social Media</h4>
+                <div class="social-links">
+                    <a href="#">Facebook</a>
+                    <a href="#">Twitter</a>
+                    <a href="#">Instagram</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 HearHelper. All rights reserved. | Developed by Ganeshthegod</p>
+        </div>
+    </footer>
+
+    <script src="../js/app.js"></script>
+    <script src="../js/navigation.js"></script>
+    <script src="../js/benefits.js"></script>
+    <script type="module" src="../js/auth.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Transcription - HearHelper</title>
+    <!-- API Client -->
+    <script src="../js/api.js"></script>
+    <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="../css/animation.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <link rel="stylesheet" href="../css/transcription.css">
+    <style>
+        /* Manual Input Section Styles - Compact */
+        .manual-input-section.compact-manual {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            margin-bottom: 2rem;
+            border-left: 4px solid var(--secondary-color);
+            animation: fadeIn 0.8s ease-out 0.2s both;
+        }
+
+        .manual-input-header {
+            margin-bottom: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .manual-input-header h3 {
+            font-size: 1.1rem;
+            color: var(--text-dark);
+            margin: 0;
+        }
+
+        .manual-input-header p {
+            color: #7f8c8d;
+            font-size: 0.85rem;
+            margin: 0;
+        }
+
+        .manual-input-flex {
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+        }
+
+        .manual-textarea {
+            flex: 1;
+            min-height: 80px;
+            padding: 0.8rem;
+            border: 2px solid #e0e6ed;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            resize: none;
+            transition: all 0.3s ease;
+        }
+
+        .manual-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            width: 150px;
+        }
+
+        .btn-small {
+            padding: 0.5rem;
+            font-size: 0.85rem;
+        }
+
+        /* Voice Section Styles */
+        .voice-input-container {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            margin-bottom: 1.5rem;
+        }
+
+        .voice-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .voice-header h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .btn-group-secondary {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .btn-speak-output {
+            background: linear-gradient(135deg, #f39c12, #e67e22) !important;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- ===== NAVBAR ===== -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo" onclick="navigateTo('../index.html')" style="cursor: pointer;">
+                <span class="logo-icon">🎧</span>
+                <h1>HearHelper</h1>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="../home.html" class="nav-link">Home</a></li>
+                <li><a href="./transcription.html" class="nav-link active">Transcription</a></li>
+                <li><a href="./community.html" class="nav-link">Community</a></li>
+                <li><a href="./sign_language.html" class="nav-link">Sign Language</a></li>
+                <li><a href="./benefits.html" class="nav-link">Benefits</a></li>
+                <li><a href="./settings.html" class="nav-link">Settings</a></li>
+                <li><a href="./login.html" class="nav-link" onclick="logoutUser()">Logout</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ===== MAIN CONTENT ===== -->
+    <main class="transcription-page">
+        <div class="transcription-container">
+            <!-- Header -->
+            <div class="transcription-header">
+                <h2>🎤 Live Transcription</h2>
+                <p>Real-time speech-to-text conversion in multiple languages</p>
+            </div>
+
+            <!-- Info Box -->
+            <div class="info-box">
+                <strong>💡 How it works:</strong> Click "Start Listening" and speak clearly. Your speech will be
+                converted to text in real-time.
+            </div>
+
+            <!-- Manual Typing & Speak Section (Top) -->
+            <div class="manual-input-section compact-manual">
+                <div class="manual-input-header">
+                    <h3>⌨️ Manual Input & Speak</h3>
+                    <p>Type to speak at high volume.</p>
+                </div>
+                <div class="manual-input-flex">
+                    <textarea id="manualInput" placeholder="Type here to speak..." class="manual-textarea"></textarea>
+                    <div class="manual-actions">
+                        <div class="volume-control">
+                            <label for="volumeSlider">🔊 Vol:</label>
+                            <input type="range" id="volumeSlider" min="0" max="1" step="0.1" value="1">
+                        </div>
+                        <button class="btn btn-primary speak-louder-btn" onclick="speakManualText()">
+                            <span>🔊</span> Speak
+                        </button>
+                        <button class="btn btn-danger btn-small" onclick="document.getElementById('manualInput').value = ''">
+                            <span>🗑️</span> Clear
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Voice Input Section (Below Manual) -->
+            <div class="voice-input-container">
+                <div class="voice-header">
+                    <h3>🎤 Voice Transcription</h3>
+                    <div class="language-selector">
+                        <label for="langSelect">🌐 Language:</label>
+                        <select id="langSelect" onchange="changeLanguage(this.value)">
+                            <option value="en-US">English (US)</option>
+                            <option value="en-GB">English (UK)</option>
+                            <option value="kn-IN">Kannada (India)</option>
+                            <option value="hi-IN">Hindi (India)</option>
+                            <option value="es-ES">Spanish</option>
+                            <option value="fr-FR">French</option>
+                            <option value="de-DE">German</option>
+                            <option value="it-IT">Italian</option>
+                            <option value="pt-BR">Portuguese (Brazil)</option>
+                            <option value="ja-JP">Japanese</option>
+                            <option value="zh-CN">Chinese (Simplified)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Controls -->
+                <div class="transcription-controls">
+                    <button class="btn btn-primary" id="micBtn" onclick="toggleRecording()">
+                        <span>🎤</span> Start Listening
+                    </button>
+                    <button class="btn btn-danger" onclick="clearTranscript()">
+                        <span>🗑️</span> Clear Transcript
+                    </button>
+                    <div class="btn-group-secondary">
+                        <button class="btn btn-success" onclick="copyTranscript()">
+                            <span>📋</span> Copy
+                        </button>
+                        <button class="btn btn-success" onclick="downloadTranscript()">
+                            <span>⬇️</span> Save
+                        </button>
+                        <button class="btn btn-primary btn-speak-output" onclick="speakTranscript()">
+                            <span>🔊</span> Play Output
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Transcript Box -->
+            <div class="transcription-box">
+                <div class="transcription-box-header">
+                    <h3>📝 Your Transcript</h3>
+                    <span id="status" class="status-badge idle">Ready</span>
+                </div>
+                <div id="finalTranscript" class="transcript-display final-transcript">
+                    Your transcribed text will appear here...
+                </div>
+                <div id="interimTranscript" class="transcript-display interim-transcript"></div>
+            </div>
+
+            <!-- Transcript History -->
+            <div class="transcript-history">
+                <h3>📜 Transcription History</h3>
+                <ul id="historyList">
+                    <li class="empty-state">
+                        <div class="empty-state-icon">📭</div>
+                        <p>No transcriptions yet</p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </main>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>About HearHelper</h4>
+                <p>Making communication accessible for everyone</p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="transcription.html">Transcription</a></li>
+                    <li><a href="benefits.html">Benefits</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Support</h4>
+                <ul>
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#">Documentation</a></li>
+                    <li><a href="#">FAQ</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Social Media</h4>
+                <div class="social-links">
+                    <a href="#">Facebook</a>
+                    <a href="#">Twitter</a>
+                    <a href="#">Instagram</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 HearHelper. All rights reserved. | Developed by Ganeshthegod</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script type="module" src="../js/auth.js"></script>
+    <script src="../js/navigation.js"></script>
+    <script src="../js/speech.js"></script>
+    <script src="../js/storage.js"></script>
+    <script src="../js/app.js"></script>
+
+    <script>
+        let isRecording = false;
+        let recognition = null;
+        let finalTranscript = '';
+        let transcriptHistory = [];
+        let intentionallyStopped = false;
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            initTranscription();
+            loadTranscriptHistory();
+        });
+
+        function initTranscription() {
+            const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+
+            if (!SpeechRecognition) {
+                showNotification('❌ Speech Recognition not supported', 'error');
+                return;
+            }
+
+            recognition = new SpeechRecognition();
+            recognition.continuous = true;
+            recognition.interimResults = true;
+            recognition.maxAlternatives = 1;
+            recognition.lang = document.getElementById('langSelect').value || 'en-US';
+
+            recognition.onstart = () => {
+                isRecording = true;
+                const btn = document.getElementById('micBtn');
+                btn.classList.add('recording');
+                btn.innerHTML = '<span>🛑</span> Stop Listening';
+                document.getElementById('status').textContent = 'Listening...';
+                document.getElementById('status').className = 'status-badge listening';
+            };
+
+            const capitalize = (str) => str.charAt(0).toUpperCase() + str.slice(1);
+
+            recognition.onresult = (event) => {
+                let interim = '';
+
+                for (let i = event.resultIndex; i < event.results.length; i++) {
+                    const transcript = event.results[i][0].transcript;
+
+                    if (event.results[i].isFinal) {
+                        let formattedTranscript = transcript.trim();
+                        if (finalTranscript === '' || finalTranscript.slice(-1).match(/[.!?]/)) {
+                             formattedTranscript = capitalize(formattedTranscript);
+                        }
+                        
+                        finalTranscript += formattedTranscript + (formattedTranscript.match(/[.!?]$/) ? ' ' : '. ');
+                    } else {
+                        interim += transcript;
+                    }
+                }
+
+                document.getElementById('finalTranscript').textContent = finalTranscript;
+                document.getElementById('interimTranscript').textContent = interim;
+            };
+
+            recognition.onerror = (event) => {
+                console.error('Speech recognition error:', event.error);
+                if (event.error !== 'no-speech') {
+                    showNotification('❌ Error: ' + event.error, 'error');
+                    stopRecording();
+                }
+            };
+
+            recognition.onend = () => {
+                if (isRecording && !intentionallyStopped) {
+                    try {
+                        recognition.start();
+                    } catch(e) {
+                         stopRecording();
+                    }
+                } else {
+                    stopRecording();
+                }
+            };
+        }
+
+        function toggleRecording() {
+            if (isRecording) {
+                stopRecording();
+            } else {
+                startRecording();
+            }
+        }
+
+        function startRecording() {
+            intentionallyStopped = false;
+            finalTranscript = '';
+            document.getElementById('finalTranscript').textContent = '';
+            document.getElementById('interimTranscript').textContent = '';
+            recognition.lang = document.getElementById('langSelect').value;
+            recognition.start();
+        }
+
+        function stopRecording() {
+            intentionallyStopped = true;
+            isRecording = false;
+            const btn = document.getElementById('micBtn');
+            btn.classList.remove('recording');
+            btn.innerHTML = '<span>🎤</span> Start Listening';
+            document.getElementById('status').textContent = 'Ready';
+            document.getElementById('status').className = 'status-badge idle';
+            
+            try { recognition.stop(); } catch(e) {}
+
+            if (finalTranscript.trim()) {
+                if (window.storageManager && storageManager.addTranscript) {
+                    storageManager.addTranscript(finalTranscript, document.getElementById('langSelect').value);
+                    displayHistory();
+                }
+            }
+        }
+
+        function clearTranscript() {
+            finalTranscript = '';
+            document.getElementById('finalTranscript').textContent = 'Your transcribed text will appear here...';
+            document.getElementById('interimTranscript').textContent = '';
+            showNotification('✅ Cleared', 'success');
+        }
+
+        function copyTranscript() {
+            const text = document.getElementById('finalTranscript').textContent;
+            navigator.clipboard.writeText(text).then(() => {
+                showNotification('✅ Copied to clipboard!', 'success');
+            }).catch(() => {
+                showNotification('❌ Failed to copy', 'error');
+            });
+        }
+
+        function downloadTranscript() {
+            const text = document.getElementById('finalTranscript').textContent;
+            if (!text || text.trim() === 'Your transcribed text will appear here...') return;
+            const element = document.createElement('a');
+            element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+            element.setAttribute('download', `transcript_${new Date().toISOString()}.txt`);
+            element.style.display = 'none';
+            document.body.appendChild(element);
+            element.click();
+            document.body.removeChild(element);
+            showNotification('✅ Downloaded!', 'success');
+        }
+
+        function speakTranscript() {
+            const text = document.getElementById('finalTranscript').textContent;
+            if (!text || text.trim() === 'Your transcribed text will appear here...') {
+                showNotification('❌ No text to speak', 'error');
+                return;
+            }
+            speakText(text);
+        }
+
+        function speakManualText() {
+            const text = document.getElementById('manualInput').value.trim();
+            if (!text) {
+                showNotification('❌ Please type something first', 'error');
+                return;
+            }
+            const volume = document.getElementById('volumeSlider').value;
+            speakText(text, parseFloat(volume));
+            
+            // Save to history
+            if (window.storageManager && storageManager.addTranscript) {
+                storageManager.addTranscript("[Manual] " + text, "Manual");
+                displayHistory(); 
+            }
+            
+            showNotification('🔊 Speaking...', 'success');
+        }
+
+        function speakText(text, volume = 1.0) {
+            if (!window.speechSynthesis) return;
+            window.speechSynthesis.cancel(); // Stop current speech
+
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = document.getElementById('langSelect').value;
+            utterance.volume = volume;
+
+            try {
+                if (window.storageManager) {
+                    const settings = storageManager.getSettings();
+                    utterance.rate = settings.speechRate || 1.0;
+                    utterance.pitch = settings.pitch || 1.0;
+                }
+            } catch (e) {}
+
+            window.speechSynthesis.speak(utterance);
+        }
+
+        function changeLanguage(lang) {
+            if (recognition) {
+                recognition.lang = lang;
+            }
+        }
+
+        // Removed local transcriptHistory tracking in favor of storageManager
+
+        function loadTranscriptHistory() {
+            displayHistory();
+        }
+
+        function displayHistory() {
+            const historyList = document.getElementById('historyList');
+            const transcriptHistory = JSON.parse(localStorage.getItem('transcriptHistory') || "[]");
+            
+            if (transcriptHistory.length === 0) {
+                historyList.innerHTML = '<li class="empty-state"><div class="empty-state-icon">📭</div><p>No transcriptions yet</p></li>';
+                return;
+            }
+
+            historyList.innerHTML = transcriptHistory.map(item => `
+                <li>
+                    <div class="transcript-text">${item.text.substring(0, 100)}${item.text.length >= 100 ? '...' : ''}</div>
+                    <div class="transcript-meta">
+                        <span>${new Date(item.timestamp).toLocaleString()}</span>
+                        <button class="btn btn-danger" onclick="deleteHistoryItem(${item.id})" style="padding: 4px 8px; font-size: 0.8rem;">🗑️ Delete</button>
+                    </div>
+                </li>
+            `).join('');
+        }
+
+        function deleteHistoryItem(id) {
+            let history = JSON.parse(localStorage.getItem('transcriptHistory') || "[]");
+            history = history.filter(item => item.id !== id);
+            localStorage.setItem('transcriptHistory', JSON.stringify(history));
+            displayHistory();
+            showNotification('✅ Item deleted', 'success');
+        }
+
+        function showNotification(message, type = 'success') {
+            // Check if global showNotification exists, otherwise alert
+            if (window.showAlert) {
+                window.showAlert(message, type);
+            } else {
+                console.log(`${type.toUpperCase()}: ${message}`);
+            }
+        }
+    </script>
+</body>
+
+</html>

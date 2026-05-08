@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HearHelper Academy - Multi-Lingual Dictionary</title>
+    <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <link rel="stylesheet" href="../css/sign_language.css">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- ===== NAVBAR ===== -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo" onclick="navigateTo('../index.html')" style="cursor: pointer;">
+                <span class="logo-icon">🎧</span>
+                <h1>HearHelper</h1>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="../home.html" class="nav-link">Home</a></li>
+                <li><a href="./transcription.html" class="nav-link">Transcription</a></li>
+                <li><a href="./community.html" class="nav-link">Community</a></li>
+                <li><a href="./sign_language.html" class="nav-link active">Sign Language</a></li>
+                <li><a href="./benefits.html" class="nav-link">Benefits</a></li>
+                <li><a href="./settings.html" class="nav-link">Settings</a></li>
+                <li><a href="./login.html" class="nav-link" onclick="logoutUser()">Logout</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+
+    <header class="page-intro">
+        <h1 id="titleDisplay">Sign Language Dictionary</h1>
+
+        <main class="container">
+
+            <div class="camera-panel">
+
+                <video id="webcam" autoplay playsinline></video>
+                <canvas id="output_canvas"></canvas>
+
+                <button id="enableWebcamButton">Enable AI Camera</button>
+
+            </div>
+
+            <div class="side-panel">
+
+                <div class="gesture-box glass-card">
+                    <div class="status-container">
+                        <span id="ai-status" class="status-badge">AI Off</span>
+                    </div>
+                    <h2>Live Detection</h2>
+
+                    <div class="result-display">
+                        <div id="gesture-emoji">👀</div>
+                        <div id="gesture-output">Waiting...</div>
+                    </div>
+                </div>
+
+                <div class="sentence-box glass-card">
+                    <h3>Forming Sentence</h3>
+                    <div id="current-sentence" class="sentence-display">Waiting for gestures...</div>
+                    <div class="sentence-controls">
+                        <button id="speak-sentence-btn" class="btn btn-primary" title="Speak Sentence"><i class="fas fa-volume-up"></i> Speak</button>
+                        <button id="save-sentence-btn" class="btn btn-success" title="Save to History"><i class="fas fa-save"></i> Save</button>
+                        <button id="clear-sentence-btn" class="btn btn-danger" title="Clear Sentence"><i class="fas fa-times"></i> Clear</button>
+                    </div>
+                </div>
+
+                <div class="history-box glass-card">
+                    <h3>Conversation History</h3>
+                    <div id="history-list"></div>
+                    <button id="clear-history-btn" class="btn btn-danger">Clear History</button>
+                </div>
+
+            </div>
+
+        </main>
+
+        <section class="video-theatre">
+            <div class="video-box">
+                <iframe id="mainPlayer" src="https://www.youtube.com/embed/0FcwzMq4iWg" allowfullscreen></iframe>
+            </div>
+        </section>
+
+
+        <div class="button-container">
+            <button class="feature-btn"><a href="https://www.lifeprint.com/" class="nav-link-button">
+                    Learn More →
+                </a></button>
+        </div>
+
+        <!-- ===== FOOTER ===== -->
+        <footer class="footer">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>About HearHelper</h4>
+                    <p>Making communication accessible for everyone</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="../index.html">Home</a></li>
+                        <li><a href="transcription.html">Transcription</a></li>
+                    <li><a href="benefits.html">Benefits</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Documentation</a></li>
+                        <li><a href="#">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Social Media</h4>
+                    <div class="social-links">
+                        <a href="#">Facebook</a>
+                        <a href="#">Twitter</a>
+                        <a href="#">Instagram</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 HearHelper. All rights reserved.</p>
+            </div>
+        </footer>
+
+        <!-- Navigation Script -->
+        <script src="../js/navigation.js"></script>
+
+        <!-- Authentication Script -->
+        <script type="module" src="../js/auth.js"></script>
+
+        <!-- MediaPipe AI Logic -->
+        <script type="module" src="../js/sign_language_ai.js"></script>
+</body>
+
+</html>

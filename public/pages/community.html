@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Community Connect - HearHelper</title>
+    <!-- API Client -->
+    <script src="../js/api.js"></script>
+    <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="../css/animation.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <link rel="stylesheet" href="../css/community_connect.css">
+</head>
+
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo" onclick="window.location.href='../home.html'">
+                <span class="logo-icon">🎧</span>
+                <h1>HearHelper</h1>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="../home.html" class="nav-link">Home</a></li>
+                <li><a href="./transcription.html" class="nav-link">Transcription</a></li>
+                <li><a href="./community.html" class="nav-link active">Community</a></li>
+                <li><a href="./sign_language.html" class="nav-link">Sign Language</a></li>
+                <li><a href="./benefits.html" class="nav-link">Benefits</a></li>
+                <li><a href="./settings.html" class="nav-link">Settings</a></li>
+                <li><a href="#" class="nav-link" id="logoutLink">Logout</a></li>
+            </ul>
+            <div class="hamburger">
+                <span>-</span>
+                <span>-</span>
+                <span>-</span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ===== MAIN CONTENT ===== -->
+    <main class="community-page">
+        <div class="community-container">
+            <!-- Header -->
+            <div class="community-header">
+                <h2>🤝 Community Connect</h2>
+                <p>Connect with other registered users instantly from anywhere</p>
+            </div>
+
+            <div class="chat-layout">
+                <!-- Sidebar: Contacts List -->
+                <aside class="contacts-sidebar">
+                    <div class="sidebar-header">
+                        <h3>Contacts</h3>
+                        <button class="profile-toggle-btn" id="openProfileModal" title="Profile Settings">⚙️</button>
+                    </div>
+                    <div class="search-box">
+                        <input type="text" id="userSearch" placeholder="Search users...">
+                    </div>
+                    <div class="contacts-list" id="contactsList">
+                        <!-- Users will be populated here -->
+                        <div class="loading-spinner">Loading users...</div>
+                    </div>
+                </aside>
+
+                <!-- Main: Chat Area -->
+                <section class="chat-area">
+                    <div class="chat-placeholder" id="chatPlaceholder">
+                        <div class="placeholder-content">
+                            <span class="placeholder-icon">💬</span>
+                            <h3>Select a contact to start chatting</h3>
+                            <p>Stay connected with the HearHelper community</p>
+                        </div>
+                    </div>
+
+                    <div class="chat-active" id="chatActive" style="display: none;">
+                        <div class="chat-header">
+                            <div class="contact-info">
+                                <div class="contact-avatar" id="activeAvatar">U</div>
+                                <div class="contact-details">
+                                    <h4 id="activeContactName">User Name</h4>
+                                    <span class="status-indicator online">Online</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="messages-container" id="messagesContainer">
+                            <!-- Messages will be populated here -->
+                        </div>
+
+                        <!-- Quick Response Phrases (Moved inside chat for better accessibility) -->
+                        <div class="quick-responses-chat">
+                             <div class="quick-phrases-scroll" id="quickPhrases">
+                                <button class="phrase-tag" onclick="sendQuickPhrase('Yes ✅')">Yes ✅</button>
+                                <button class="phrase-tag" onclick="sendQuickPhrase('No ❌')">No ❌</button>
+                                <button class="phrase-tag" onclick="sendQuickPhrase('I understand 👍')">I understand 👍</button>
+                                <button class="phrase-tag" onclick="sendQuickPhrase('Can you repeat? 🔄')">Repeat? 🔄</button>
+                                <button class="phrase-tag" onclick="sendQuickPhrase('Thank you 🙏')">Thank you 🙏</button>
+                                <button class="phrase-tag" onclick="sendQuickPhrase('Hello 👋')">Hello 👋</button>
+                                <button class="phrase-tag" onclick="sendQuickPhrase('Wait a moment ⏳')">Wait ⏳</button>
+                                <button class="phrase-tag" onclick="sendQuickPhrase('Help! 🆘')">Help 🆘</button>
+                             </div>
+                        </div>
+
+                        <div class="chat-input-area">
+                            <textarea id="messageInput" placeholder="Type a message..." rows="1"></textarea>
+                            <div class="input-actions">
+                                <button class="action-btn" id="voiceBtn" title="Voice Input">🎤</button>
+                                <button class="send-btn" id="sendBtn">
+                                    <span>📤</span> Send
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>About HearHelper</h4>
+                <p>Making communication <br>accessible for everyone</p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="../home.html">Home</a></li>
+                    <li><a href="./transcription.html">Transcription</a></li>
+                    <li><a href="./benefits.html">Benefits</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Support</h4>
+                <ul>
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#">Documentation</a></li>
+                    <li><a href="#">FAQ</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Social Media</h4>
+                <div class="social-links">
+                    <a href="https://www.facebook.com">Facebook</a>
+                    <a href="https://twitter.com">Twitter</a>
+                    <a href="https://instagram.com">Instagram</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 HearHelper. All rights reserved. | Developed by Ganesh and Puneeth
+            </p>
+        </div>
+    </footer>
+
+    <!-- Profile Modal -->
+    <div id="profileModal" class="modal-overlay" style="display: none;">
+        <div class="profile-modal">
+            <div class="modal-header">
+                <h3>👤 Profile & Privacy</h3>
+                <span class="close-modal" id="closeProfileModal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <p>Manage how you appear in the community</p>
+                <div class="form-group-modal">
+                    <label>Appearance Name</label>
+                    <input type="text" id="profileDisplayName" placeholder="Your name for others to see">
+                    <small>This is the name other users will see when you chat.</small>
+                </div>
+                <div class="form-group-modal">
+                    <label>Privacy Status</label>
+                    <select id="profileStatus">
+                        <option value="Available">Available</option>
+                        <option value="Busy">Busy</option>
+                        <option value="Offline">Offline (Hide status)</option>
+                    </select>
+                </div>
+                <button class="save-profile-btn" id="saveProfileBtn">Save Changes</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script type="module" src="../js/auth.js"></script>
+    <script src="../js/navigation.js"></script>
+    <script type="module">
+        import { auth } from '../js/firebase-config.js';
+        import { signOut } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
+        
+        document.getElementById('logoutLink').addEventListener('click', (e) => {
+            e.preventDefault();
+            signOut(auth).then(() => {
+                window.location.href = '../index.html';
+            });
+        });
+    </script>
+    <script type="module" src="../js/community_connect.js"></script>
+</body>
+
+</html>
