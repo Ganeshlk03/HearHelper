@@ -10,7 +10,7 @@ import { getFirestore } from "https://www.gstatic.com/firebasejs/10.8.1/firebase
 // 4. Scroll down to "Your apps" and add a Web app (</>)
 // 5. Copy the firebaseConfig object below
 const firebaseConfig = {
-  apiKey: "AIzaSyBzFZ-k1xoZmijZz2ZW_zdR7l2-89FiSxg",
+  apiKey: "AIzaSyB_FJWhMaWPZTBkV2PR-JweQgDszJ1ZEJw",
   authDomain: "hearhelper-28c39.firebaseapp.com",
   databaseURL: "https://hearhelper-28c39-default-rtdb.asia-southeast1.firebasedatabase.app",
   projectId: "hearhelper-28c39",
